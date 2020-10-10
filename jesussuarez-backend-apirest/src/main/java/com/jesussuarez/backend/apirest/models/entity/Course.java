@@ -2,6 +2,7 @@ package com.jesussuarez.backend.apirest.models.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +19,9 @@ public class Course implements Serializable {
 	private Long id;
 	private String name;
 	
-	@Size(max=4) //Max 4 chars validation
-	private int code;
+	@Size(min=1, max=4) //Max 4 chars validation
+	@Column(unique=true)
+	private String code;
 	
 	public Long getId() {
 		return id;
@@ -37,11 +39,11 @@ public class Course implements Serializable {
 		this.name = name;
 	}
 
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 	

@@ -1,4 +1,4 @@
-package com.jesussuarez.backend.apirest.services;
+package com.jesussuarez.backend.apirest.models.services;
 
 import java.util.List;
 
@@ -19,6 +19,7 @@ public class CourseServiceImplement implements ICourseService {
 	private ICourseDao courseDao; // Dependency Injection in Spring
 	
 	@Override
+	@Transactional(readOnly = true )
 	public List<Course> findAll() {		
 		return (List<Course>) courseDao.findAll();
 	}
@@ -30,7 +31,8 @@ public class CourseServiceImplement implements ICourseService {
 	}
 
 	@Override
-	public Course findBy(Long id) {
+	@Transactional(readOnly = true )
+	public Course findById(Long id) {
 		return courseDao.findById(id).orElse(null);
 	}
 

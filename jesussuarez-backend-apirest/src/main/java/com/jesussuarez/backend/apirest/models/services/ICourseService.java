@@ -1,4 +1,4 @@
-package com.jesussuarez.backend.apirest.services;
+package com.jesussuarez.backend.apirest.models.services;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface ICourseService {
 	
 	public List<Course> findAll();
 	public Page<Course> find(Pageable pageable);
-	public Course findBy(Long id);
+	public Course findById(Long id);
 	public Course save(Course course);
 	public void delete(Long id);
 
