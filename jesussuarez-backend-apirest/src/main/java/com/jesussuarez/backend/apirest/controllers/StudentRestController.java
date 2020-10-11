@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jesussuarez.backend.apirest.models.entity.Student;
 import com.jesussuarez.backend.apirest.models.services.IStudentService;
+import com.jesussuarez.backend.apirest.validators.StudentValidator;
 
 
 
@@ -66,8 +67,9 @@ public class StudentRestController {
 	public ResponseEntity<?> create(@Valid @RequestBody Student student, BindingResult result) { //RequesBody - JSON format - Intercepter - We validate each value received in the request body
 		Student newStudent = null;
 		Map<String, Object> response = new HashMap<>(); // Used to stores Object or Values
+		new StudentValidator().validate(student, result); // Import the Validation for Student RUT
 		if (result.hasErrors()) { // If body has Errors
-			response.put("errors", "Invalid Data");
+			response.put("errors", "Invalid Data - Check Age > 18 and Valid Rut");
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST); // If data invalid return status 400
 		}		
 		try {

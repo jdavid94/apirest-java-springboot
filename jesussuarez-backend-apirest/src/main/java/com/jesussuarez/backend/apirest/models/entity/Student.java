@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,16 +25,17 @@ public class Student implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //Incremental ID for MYSQL
 	private Long id;
-		
+	
+	@NotNull(message="Can't be Empty")
 	private String rut;
 	private String name;
 	@Column(name="last_name")
 	private String lastName;
 	
-	
+	@Min(value=18, message= "Must be greater or equal to 18") // Min age validation.
 	private int age;
 	
-	@NotNull(message="Cannot be Empty")
+	@NotNull(message="Can't be Empty")
 	@ManyToOne(fetch=FetchType.LAZY) // Indicate many to one relationship in DataBase - FetchType LAZY
 	@JoinColumn(name="course_id") // Key that generates the relationship between tables.
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // Annotation to work with lazy and avoid problems
