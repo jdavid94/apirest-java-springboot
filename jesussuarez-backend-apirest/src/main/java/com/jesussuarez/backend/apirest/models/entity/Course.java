@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -20,6 +21,7 @@ public class Course implements Serializable {
 	private String name;
 	
 	@Size(min=1, max=4) //Max 4 chars validation
+	@NotNull(message="Can't be Empty")
 	@Column(unique=true)
 	private String code;
 	
