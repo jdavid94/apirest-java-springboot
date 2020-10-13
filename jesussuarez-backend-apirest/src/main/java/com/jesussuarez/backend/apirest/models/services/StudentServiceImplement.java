@@ -32,7 +32,7 @@ public class StudentServiceImplement implements IStudentService {
 	@Override
 	@Transactional(readOnly = true )
 	public Student findById(Long id) {
-		return studentDao.findById(id).orElse(null);		
+		return studentDao.findById(id).orElse(null); // If doesn't exist, return null	
 	}
 
 	@Override

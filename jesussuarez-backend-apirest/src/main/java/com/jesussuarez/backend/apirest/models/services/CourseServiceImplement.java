@@ -33,7 +33,7 @@ public class CourseServiceImplement implements ICourseService {
 	@Override
 	@Transactional(readOnly = true )
 	public Course findById(Long id) {
-		return courseDao.findById(id).orElse(null);
+		return courseDao.findById(id).orElse(null); // If doesn't exist, return null	
 	}
 
 	@Override
